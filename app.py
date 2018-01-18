@@ -29,6 +29,8 @@ def login():
 		#elif entered_password=='' or entered_email=='':
 		#	return redirect(url_for('login'))
 		db,dbc=connect()
+		#In place of 'USERS' write your own Table Name
+		#In place of 'EMAIL' write your own email field Name
 		getemail=dbc.execute("select * from USERS where EMAIL='%s'"%(entered_email))
 		getpasswd=dbc.fetchone()[5]
 		if getpasswd==entered_password:
@@ -50,6 +52,7 @@ def signup():
 		lname=request.form['lname']
 		mail=request.form['mail']
 		pwd=request.form['pwd']
+		#Write your own fields name in place of 'FIRSTNAME, LASTNAME, EMAIL, PASSWORD'
 		dbc.execute("insert into USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD) values(%s, %s, %s, %s)",(fname, lname, mail, pwd))
 		db.commit()
 		db.close()
